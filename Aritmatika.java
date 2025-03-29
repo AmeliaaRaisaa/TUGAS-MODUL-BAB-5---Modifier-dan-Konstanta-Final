@@ -1,50 +1,52 @@
+// Kelas Aritmatika untuk melakukan operasi matematika
 public class Aritmatika {
     // Method static untuk penjumlahan
     public static int hitungPenjumlahan(int a, int b) {
-        // Mengembalikan hasil penjumlahan dari dua angka
-        return a + b;
+        return a + b; // Mengembalikan hasil penjumlahan
     }
-
+    
     // Method static untuk pengurangan
     public static int hitungPengurangan(int a, int b) {
-        // Mengembalikan hasil pengurangan dari dua angka
-        return a - b;
+        return a - b; // Mengembalikan hasil pengurangan
     }
-
+    
     // Method non-static untuk perkalian
     public int hitungPerkalian(int a, int b) {
-        // Mengembalikan hasil perkalian dari dua angka
-        return a * b;
+        return a * b; // Mengembalikan hasil perkalian
     }
-
+    
     // Method non-static untuk pembagian
     public int hitungPembagian(int a, int b) {
-        // Memeriksa apakah penyebut (b) adalah nol
         if (b == 0) {
-            // Jika ya, lemparkan exception karena pembagian dengan nol tidak diperbolehkan
-            throw new ArithmeticException("Pembagian dengan nol tidak diperbolehkan.");
+            throw new ArithmeticException("Pembagian dengan nol tidak diperbolehkan."); // Menangani pembagian dengan nol
         }
-        // Mengembalikan hasil pembagian dari dua angka
-        return a / b;
+        return a / b; // Mengembalikan hasil pembagian
     }
-
+    
     // Method non-static untuk menyederhanakan pecahan
-    public String sederhana(int numerator, int denominator) {
-        // Menghitung GCD (Greatest Common Divisor) dari pembilang dan penyebut
-        int gcd = gcd(numerator, denominator);
-        // Mengembalikan pecahan yang sudah disederhanakan
-        return (numerator / gcd) + "/" + (denominator / gcd);
+    public String sederhana(int pembilang, int penyebut) {
+        if (penyebut == 0) {
+            throw new ArithmeticException("Penyebut tidak boleh nol."); // Menangani penyebut nol
+        }
+        
+        int gcd = gcd(Math.abs(pembilang), Math.abs(penyebut)); // Menghitung GCD dari pembilang dan penyebut
+        
+        // Menangani tanda negatif
+        if (penyebut < 0) {
+            pembilang = -pembilang;
+            penyebut = -penyebut;
+        }
+        
+        return (pembilang / gcd) + "/" + (penyebut / gcd); // Mengembalikan pecahan yang sudah disederhanakan
     }
-
-    // Method untuk mencari GCD (Greatest Common Divisor)
+    
+    // Method helper untuk mencari GCD (Greatest Common Divisor)
     private int gcd(int a, int b) {
-        // Menggunakan algoritma Euclidean untuk mencari GCD
         while (b != 0) {
             int temp = b; // Menyimpan nilai b sementara
             b = a % b;    // Menghitung sisa pembagian
             a = temp;     // Mengupdate a dengan nilai b
         }
-        // Mengembalikan nilai GCD
-        return a;
+        return a; // Mengembalikan nilai GCD
     }
 }
